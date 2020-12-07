@@ -1,4 +1,5 @@
 let snake;
+let apple;
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
@@ -95,13 +96,13 @@ function grow() {
 }
 
 function newApple(){
-    canvas.width
-    console.log(canvas.width);
-    console.log(canvas.height);
+    apple = {
+        height : Math.random() * 150,
+        width: Math.random() * 300
+    };
 
-    ctx.fillRect(50, 50,
+    ctx.fillRect(apple.width, apple.height,
         10, 5);
-    console.log('stop');
 
 }
 
