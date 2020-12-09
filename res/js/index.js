@@ -15,7 +15,7 @@ let snaky = function () {
         size: 3.5,
         length: 1,
         color: 'blue',
-        dimensions: { width: 7, height: 3.5 },
+        dimensions: { width: 5, height: 5 },
         headPosition: { x: 5, y: 5 },
         tail: [],
         grow: function () {
@@ -74,6 +74,11 @@ let snaky = function () {
         }
     }
 }();
+setInterval((direction) => {
+
+    snake.move(direction);
+ 
+}, 250);
 
 //Everything only works because of the parenthesis on line 74??
 
@@ -88,8 +93,8 @@ function update() {
     document.getElementById("x-position").textContent = "X-Pos " + snake.headPosition.x;
     document.getElementById("y-position").textContent = "Y-Pos " + snake.headPosition.y;
 }
-setInterval(snake.move, 500);
 setInterval(update, 200);
+
 
 function grow() {
     snake.grow();
@@ -112,72 +117,23 @@ function gameOver(){
 
 window.addEventListener("resize", () => {
    // snakeAspectRatio = window.innerHeight / window.innerWidth;
-    console.log(window.innerWidth);
-    console.log(window.innerHeight);
+    // console.log(window.innerWidth);
+    // console.log(window.innerHeight/0.8);
 
-    canvas.style.width = "100%";
-    canvas.style.height = "100%";
+    // if (window.innerWidth > (window.innerHeight * 0.8)){
+    //     console.log("wide body");
+    //     snake.dimensions.height = 5;
+    //     snake.dimensions.width = (window.innerWidth/window.innerHeight) * 5;
+    // }else{
+    //     console.log("tall boy");
+    //     snake.dimensions.height = (window.innerWidth/window.innerHeight) * 5;
+    //     snake.dimensions.width = 5;
+    // }
 
-    console.log('Canvas width =  ' + canvas.width);
-    console.log('Canvas height =  ' + canvas.height);
+    // canvas.style.width = canvas.width;
+    // canvas.style.height = canvas.height;
 
-//     if (window.innerHeight > window.innerWidth){
-//         snakeDimensions = {width: snakeSize * snakeAspectRatio, 
-//                          height: snakeSize};
-//     }else{
-//         snakeDimensions = {width: snakeSize * snakeAspectRatio, 
-//             height: snakeSize};
-//     }
-//    return snakeDimensions;
 });
 
 
 
-
-//console.log("a", "97");
-
-
-// function myFunction() {
-
-//     //let objectSize = 1;
-
-//     let myObject = {
-
-//         objectSize: 1,
-
-//         growObject: (num) => {
-
-//             num += 1;
-//             console.log("my object size " + (num));
-
-//         }
-
-//     }
-
-    //myObject.growObject(objectSize);
-
-    //setInterval(myObject.growObject(myObject.objectSize), 500);
-//}
-
-//myFunction();
-
-
-// let myFunction = function(){
-
-//     myOjbect = {  
-
-//         objectSize: 1,
-
-//         growObject: function(){
-
-//             this.length += 1;
-//             console.log("my object size " + (this.length));
-
-//         }
-
-//     }
-
-// }();
-
-
-//  setInterval(myOjbect.growObject, 500);
