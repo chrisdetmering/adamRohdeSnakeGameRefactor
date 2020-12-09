@@ -1,18 +1,22 @@
 let snake;
 let apple;
+let heightRatio = 1;
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 window.onload = () => {
     canvas.style.width = "100%";
     canvas.style.height = "100%";
+
+    //canvas.height = canvas.width * heightRatio;
+
     initSnake();
     newApple();
 };
 
 let snaky = function () {
     snake = {
-        size: 3.5,
+        size: 5,
         length: 1,
         color: 'blue',
         dimensions: { width: 5, height: 5 },
@@ -86,7 +90,7 @@ function initSnake() {
     ctx.beginPath();
     ctx.fillRect(snake.headPosition.xPosition, snake.headPosition.yPosition,
         snake.dimensions.width, snake.dimensions.height);
-    snake.tail.push({ x: 5, y: 5 });
+    snake.tail.push({ x: snake.dimensions.width, y: snake.dimensions.height });
 }
 
 function update() {
@@ -102,13 +106,12 @@ function grow() {
 
 function newApple(){
     apple = {
-        height : Math.random() * 150,
-        width: Math.random() * 300
+        height : Math.floor(Math.floor(Math.random()*20)*10+5),
+        width: Math.floor(Math.floor(Math.random()*30)*10+5)
     };
 
     ctx.fillRect(apple.width, apple.height,
-        10, 5);
-
+        5, 5);
 }
 
 function gameOver(){
