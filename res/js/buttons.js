@@ -56,6 +56,10 @@ setInterval(update, 200);
 
 document.onkeydown = function (e){
 
+    if (e.key ==  " "){
+        direction = 'STOP';
+    }
+
     if (e.key == 'ArrowUp'){
         run = 'running';
         direction = 'UP';
