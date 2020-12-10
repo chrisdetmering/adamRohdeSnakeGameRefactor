@@ -14,13 +14,20 @@ window.onload = () => {
     newApple();
 };
 
+function initSnake() {
+    ctx.beginPath();
+    ctx.fillRect(snake.headPosition.xPosition, snake.headPosition.yPosition,
+        snake.dimensions.width, snake.dimensions.height);
+    snake.tail.push({ x: snake.dimensions.width, y: snake.dimensions.height });
+}
+
 let snaky = function () {
     snake = {
         size: 5,
         length: 1,
         color: 'blue',
         dimensions: { width: 5, height: 5 },
-        headPosition: { x: 5, y: 5 },
+        headPosition: { x: 10, y: 10 },
         tail: [],
         grow: function () {
             this.length += 1;
@@ -75,47 +82,42 @@ let snaky = function () {
                     snake.tail.push({ x: snake.headPosition.x, y: snake.headPosition.y });
                     break;
             }
+            collision();
+            gotTheApple();
         }
     }
 }();
-setInterval((direction) => {
-
-    snake.move(direction);
- 
+setInterval((direction) => { 
+        snake.move(direction);
 }, 250);
-
-//Everything only works because of the parenthesis on line 74??
-
-function initSnake() {
-    ctx.beginPath();
-    ctx.fillRect(snake.headPosition.xPosition, snake.headPosition.yPosition,
-        snake.dimensions.width, snake.dimensions.height);
-    snake.tail.push({ x: snake.dimensions.width, y: snake.dimensions.height });
-}
-
-function update() {
-    document.getElementById("x-position").textContent = "X-Pos " + snake.headPosition.x;
-    document.getElementById("y-position").textContent = "Y-Pos " + snake.headPosition.y;
-}
-setInterval(update, 200);
-
 
 function grow() {
     snake.grow();
 }
 
 function newApple(){
+    console.log('New apple game on');
     apple = {
-        height : Math.floor(Math.floor(Math.random()*20)*10+5),
-        width: Math.floor(Math.floor(Math.random()*30)*10+5)
+        height : Math.floor(Math.floor(Math.random()*10)*10+10),
+        width: Math.floor(Math.floor(Math.random()*15)*10+10)
     };
 
     ctx.fillRect(apple.width, apple.height,
         5, 5);
 }
 
-function gameOver(){
-//Todo
+function collision(){
+    if (snake.headPosition.x >= 290 || snake.headPosition.x <= 5 || snake.headPosition.y >= 140 || snake.headPosition.y <= 5){
+        direction = 'STOP';
+        console.log("game over");
+    }
+}
+
+function gotTheApple(){
+    if (snake.headPosition.x === apple.width && snake.headPosition.y ===apple.height){
+        grow();
+        newApple();
+    }
 }
 
 window.addEventListener("resize", () => {
@@ -139,4 +141,65 @@ window.addEventListener("resize", () => {
 });
 
 
+//Works
+// myFunction = function(){
+    
+//     myObject = {  
 
+//         objectSize: 1,
+
+//         growObject: function(){
+
+//             this.length += 1;
+//             console.log("my object size " + (this.length));
+
+//         }
+        
+//     }
+
+// }();
+// setInterval(myObject.growObject, 1000);
+
+//Does not work.  
+// function myFunction(){
+    
+//     myObject = {  
+
+//         objectSize: 1,
+
+//         growObject: function(){
+
+//             this.length += 1;
+//             console.log("my object size " + (this.length));
+
+//         }
+        
+//     }
+
+// };
+
+// setInterval(myFunction().myObject.growObject, 1000);
+
+//Works
+
+
+//Does not work.  
+
+// myFunction = function(){
+    
+//     myObject = {  
+        
+//         objectSize: 1,
+        
+//         growObject: function(){
+            
+//             this.length += 1;
+//             console.log("my object size " + (this.length));
+            
+//         }
+        
+//     }
+    
+// };
+
+// setInterval(myObject.growObject, 1000);
