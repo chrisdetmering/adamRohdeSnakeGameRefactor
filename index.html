@@ -14,17 +14,19 @@
 
 <body>
 
+    <!-- <a class="btn" onclick="pop()">Show Box</a> -->
+    <div id="box">
+        <i class="fas fa-check-circle"></i>
+        <h1>Game Over!</h1>
+        <a class="close" id="close-Modal">Start new game</a>
+    </div>
+
     <div class="main-container">
-
         <div class="game-container" id="game-container">
-
-
             <canvas id="canvas"></canvas>
-
         </div>
 
         <div class="button-container">
-
             <div class="show-status-row">
                 <div class="x-position">
                     <p id="x-position">x position</p>
@@ -32,36 +34,27 @@
 
                 <div class="y-position">
                     <p id="y-position">y position</p>
-
                 </div>
             </div>
-
             <div class="button-row-1">
                 <button class="grow-button" id="grow-button">Grow</button>
                 <button class="up-button" id="up-button">UP</button>
             </div>
-
             <div class="button-row-2">
-
                 <button class="left-button" id="left-button">Left</button>
                 <button class=" right-button" id="right-button">Right</button>
-
             </div>
-
             <div class="button-row-3">
                 <button class="down-button" id="down-button">Down</button>
             </div>
-
         </div>
 
     </div>
 
-
-
-
     <script type="text/javascript" src="./res/js/buttons.js"></script>
     <script type="text/javascript" src="./res/js/index.js"></script>
     <script type="text/javascript" src="./res/js/theme.js"></script>
+    <script type="text/javascript" src="./res/js/snake.js"></script>
 
 </body>
 

@@ -64,3 +64,80 @@ function canvas_obj(ele) {
     ctx.fillText("Hello World", 10, 50);
     requestAnimationFrame(animate);
   }
+
+
+  //Works
+// myFunction = function(){
+    
+//     myObject = {  
+
+//         objectSize: 1,
+
+//         growObject: function(){
+
+//             this.length += 1;
+//             console.log("my object size " + (this.length));
+
+//         }
+        
+//     }
+
+// }();
+// setInterval(myObject.growObject, 1000);
+
+//Does not work.  
+// function myFunction(){
+    
+//     myObject = {  
+
+//         objectSize: 1,
+
+//         growObject: function(){
+
+//             this.length += 1;
+//             console.log("my object size " + (this.length));
+
+//         }
+        
+//     }
+
+// };
+
+// setInterval(myFunction().myObject.growObject, 1000);
+
+//Works
+
+
+//Does not work.  
+
+// myFunction = function(){
+    
+//     myObject = {  
+        
+//         objectSize: 1,
+        
+//         growObject: function(){
+            
+//             this.length += 1;
+//             console.log("my object size " + (this.length));
+            
+//         }
+        
+//     }
+    
+// };
+
+// setInterval(myObject.growObject, 1000);
+
+
+function makeFunc() {
+  var name = 'Mozilla';
+  function displayName() {
+    console.log(name);
+  }
+  return displayName;
+}
+
+//var myFunc = makeFunc();
+//myFunc();
+

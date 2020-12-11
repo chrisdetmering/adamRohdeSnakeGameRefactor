@@ -1,115 +1,46 @@
-let snake;
 let apple;
 let heightRatio = 1;
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+let gameOverFlag;
 
 window.onload = () => {
-    canvas.style.width = "100%";
-    canvas.style.height = "100%";
-
-    //canvas.height = canvas.width * heightRatio;
-
-    initSnake();
+   
+    initGame();
     newApple();
 };
 
-function initSnake() {
+function initGame(){
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
     ctx.beginPath();
+    
+    snake.headPosition.x = 10;
+    snake.headPosition.y = 10;
+
     ctx.fillRect(snake.headPosition.xPosition, snake.headPosition.yPosition,
         snake.dimensions.width, snake.dimensions.height);
-    snake.tail.push({ x: snake.dimensions.width, y: snake.dimensions.height });
-}
+     snake.tail.push({ x: snake.dimensions.width, y: snake.dimensions.height });
 
-let snaky = function () {
-    snake = {
-        size: 5,
-        length: 1,
-        color: 'blue',
-        dimensions: { width: 5, height: 5 },
-        headPosition: { x: 10, y: 10 },
-        tail: [],
-        grow: function () {
-            this.length += 1;
-        },
-        move: function () {
-            switch (direction) {
-                case "STOP":
-                    ctx.fillRect(snake.headPosition.x, snake.headPosition.y,
-                        snake.dimensions.width, snake.dimensions.height);
-                    console.log('stop');
-                    break;
-                case "UP":
-                    ctx.clearRect(snake.tail[snake.tail.length - snake.length].x, snake.tail[snake.tail.length - snake.length].y,
-                        snake.dimensions.width + 0.1, snake.dimensions.height + 0.1);
-                    //--------------
-                    snake.headPosition.y -= snake.dimensions.height + snake.size;
-                    ctx.fillRect(snake.headPosition.x, snake.headPosition.y,
-                        snake.dimensions.width, snake.dimensions.height);
-                    //--------------
-                    snake.tail.push({ x: snake.headPosition.x, y: snake.headPosition.y });
-                    break;
-                case "DOWN":
-                    ctx.clearRect(snake.tail[snake.tail.length - snake.length].x, snake.tail[snake.tail.length - snake.length].y,
-                        snake.dimensions.width + 0.1, snake.dimensions.height + 0.1);
-                    //--------------   
-                    snake.headPosition.y += snake.dimensions.height + snake.size;
-                    //----------------
-                    ctx.fillRect(snake.headPosition.x, snake.headPosition.y,
-                        snake.dimensions.width, snake.dimensions.height);
-                    //----------------
-                    snake.tail.push({ x: snake.headPosition.x, y: snake.headPosition.y });
-                    break;
-                case "LEFT":
-                    ctx.clearRect(snake.tail[snake.tail.length - snake.length].x, snake.tail[snake.tail.length - snake.length].y,
-                        snake.dimensions.width + 0.1, snake.dimensions.height);
-                    //--------------
-                    snake.headPosition.x -= snake.dimensions.width + snake.size;
-                    //---------------
-                    ctx.fillRect(snake.headPosition.x, snake.headPosition.y,
-                        snake.dimensions.width, snake.dimensions.height);
-                    //----------------
-                    snake.tail.push({ x: snake.headPosition.x, y: snake.headPosition.y });
-                    break;
-                case "RIGHT":
-                    ctx.clearRect(snake.tail[snake.tail.length - snake.length].x, snake.tail[snake.tail.length - snake.length].y,
-                        snake.dimensions.width + 0.1, snake.dimensions.height);
-                    //----------------
-                    snake.headPosition.x += snake.dimensions.width + snake.size;
-                    //----------------
-                    ctx.fillRect(snake.headPosition.x, snake.headPosition.y,
-                        snake.dimensions.width, snake.dimensions.height);
-                    snake.tail.push({ x: snake.headPosition.x, y: snake.headPosition.y });
-                    break;
-            }
-            collision();
-            gotTheApple();
-        }
-    }
-}();
-setInterval((direction) => { 
-        snake.move(direction);
-}, 250);
+     startGame();
+}
 
 function grow() {
     snake.grow();
 }
 
 function newApple(){
-    console.log('New apple game on');
     apple = {
         height : Math.floor(Math.floor(Math.random()*10)*10+10),
         width: Math.floor(Math.floor(Math.random()*15)*10+10)
     };
-
-    ctx.fillRect(apple.width, apple.height,
-        5, 5);
+    ctx.fillRect(apple.width, apple.height, 5, 5);
 }
 
-function collision(){
+function outOfBounds(){
     if (snake.headPosition.x >= 290 || snake.headPosition.x <= 5 || snake.headPosition.y >= 140 || snake.headPosition.y <= 5){
         direction = 'STOP';
-        console.log("game over");
+        gameOver();
     }
 }
 
@@ -117,7 +48,32 @@ function gotTheApple(){
     if (snake.headPosition.x === apple.width && snake.headPosition.y ===apple.height){
         grow();
         newApple();
+        updateScore();
     }
+}
+
+function collideWithTail() {
+    for (let i = 0; i < snake.length; i++){
+        if (snake.headPosition.x == snake.tail[i].x & snake.headPosition.y == snake.tail[i].y){
+            console.log("You ran into your own tail dummy!");
+            gameOver();
+        }
+    }
+}
+
+function updateScore() {
+
+}
+
+function gameOver(){
+    console.log("Game Over!!!!");
+    gameOverFlag = true;
+    clearInterval(myTicker);  
+    gameOverModal();
+
+    //Clear All
+    const context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 window.addEventListener("resize", () => {
@@ -141,65 +97,3 @@ window.addEventListener("resize", () => {
 });
 
 
-//Works
-// myFunction = function(){
-    
-//     myObject = {  
-
-//         objectSize: 1,
-
-//         growObject: function(){
-
-//             this.length += 1;
-//             console.log("my object size " + (this.length));
-
-//         }
-        
-//     }
-
-// }();
-// setInterval(myObject.growObject, 1000);
-
-//Does not work.  
-// function myFunction(){
-    
-//     myObject = {  
-
-//         objectSize: 1,
-
-//         growObject: function(){
-
-//             this.length += 1;
-//             console.log("my object size " + (this.length));
-
-//         }
-        
-//     }
-
-// };
-
-// setInterval(myFunction().myObject.growObject, 1000);
-
-//Works
-
-
-//Does not work.  
-
-// myFunction = function(){
-    
-//     myObject = {  
-        
-//         objectSize: 1,
-        
-//         growObject: function(){
-            
-//             this.length += 1;
-//             console.log("my object size " + (this.length));
-            
-//         }
-        
-//     }
-    
-// };
-
-// setInterval(myObject.growObject, 1000);
