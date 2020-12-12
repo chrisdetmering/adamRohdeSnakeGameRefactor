@@ -38,8 +38,8 @@ function newApple(){
     switch (key) {
         case "generatePosition":
             apple = {
-                x : Math.floor(Math.floor(Math.random()*13) * 10 + 10), //Should be 300 small for testing..
-                y: Math.floor(Math.floor(Math.random()*14)*10 + 10)  //should be 150, small for testing
+                x : Math.floor(Math.floor(Math.random()*29) * 10 + 10), 
+                y: Math.floor(Math.floor(Math.random()*14)*10 + 10)  
             };    
             key = "check";
         case "check":

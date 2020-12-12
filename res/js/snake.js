@@ -82,6 +82,6 @@ let snaky = function () {
 function startGame(){
     myTicker = setInterval((direction) => { 
             snake.move(direction);
-    }, 250);
+    }, 200);
 }
 

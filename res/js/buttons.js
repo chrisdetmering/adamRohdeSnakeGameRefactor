@@ -57,12 +57,7 @@ document.onkeydown = function (e){
 };
 
 var modal = null;
-// document.onkeydown = function(e){
-//     if (e.key == " " || e.key == "Enter") {
-//         hideModal();
-//         initGame();
-//     }
-// };
+
 document.getElementById("close-Modal").addEventListener("click", () => {
     hideModal();
     initGame();
