@@ -21,16 +21,11 @@ document.getElementById("right-button").addEventListener("click", () => {
     run = 'running';
 
 });
-document.getElementById("grow-button").addEventListener("click", () => {
-    console.log("Grow");
-    grow();
-});
-
 function update() {
     document.getElementById("x-position").textContent = "X-Pos " + snake.headPosition.x;
     document.getElementById("y-position").textContent = "Y-Pos " + snake.headPosition.y;
 }
-setInterval(update, 200);
+setInterval(update, 250);
 
 document.onkeydown = function (e){
     if (e.key ==  " "){
@@ -41,9 +36,7 @@ document.onkeydown = function (e){
         run = 'running';
         direction = 'UP';
     }
-
     if (e.key == 'ArrowDown'){
-        console.log("down");
         run = 'running';
         direction = 'DOWN';
     }
@@ -57,17 +50,24 @@ document.onkeydown = function (e){
         run = 'running';
         direction = 'RIGHT';
     }
+    if (modal == true) {
+        if (e.key == " " || e.key == "Enter") {
+            hideModal();
+            initGame();
+        }
+    }
 };
 
 var modal = null;
-
+// document.onkeydown = function(e){
+//     if (e.key == " " || e.key == "Enter") {
+//         hideModal();
+//         initGame();
+//     }
+// };
 document.getElementById("close-Modal").addEventListener("click", () => {
     hideModal();
-
-    gameOverFlag = false;
     initGame();
-    newApple();  
-    startGame(); 
 });
 
 function hideModal(){

@@ -82,7 +82,7 @@ canvas {
 
 .button-row-1 {
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1fr;
     border: 1px solid black;
 }
 

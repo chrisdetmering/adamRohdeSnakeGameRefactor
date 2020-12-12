@@ -7,10 +7,11 @@ let gameOverFlag;
 window.onload = () => {
    
     initGame();
-    newApple();
+   
 };
 
 function initGame(){
+    gameOverFlag = false;
     canvas.style.width = "100%";
     canvas.style.height = "100%";
     ctx.beginPath();
@@ -18,10 +19,11 @@ function initGame(){
     snake.headPosition.x = 10;
     snake.headPosition.y = 10;
 
-    ctx.fillRect(snake.headPosition.xPosition, snake.headPosition.yPosition,
-        snake.dimensions.width, snake.dimensions.height);
-     snake.tail.push({ x: snake.dimensions.width, y: snake.dimensions.height });
+    ctx.fillStyle = 'blue';
+    ctx.fillRect(snake.headPosition.xPosition, snake.headPosition.yPosition, snake.dimensions.width, snake.dimensions.height);
+    snake.tail.push({ x: snake.dimensions.width, y: snake.dimensions.height });
 
+     newApple();
      startGame();
 }
 
@@ -30,22 +32,59 @@ function grow() {
 }
 
 function newApple(){
-    apple = {
-        height : Math.floor(Math.floor(Math.random()*10)*10+10),
-        width: Math.floor(Math.floor(Math.random()*15)*10+10)
-    };
-    ctx.fillRect(apple.width, apple.height, 5, 5);
+    let key = "generatePosition";
+    switch (key) {
+        case "generatePosition":
+            apple = {
+                x : Math.floor(Math.floor(Math.random()*13) * 10 + 10), //Should be 300 small for testing..
+                y: Math.floor(Math.floor(Math.random()*14)*10 + 10)  //should be 150, small for testing
+            }; 
+            console.log('1 - generate apple');     
+            key = "check";
+
+        case "check":
+            let badApple = false;
+            for (let i = 0; i < snake.length; i++){
+                if (apple.x == snake.tail[i].x && apple.y == snake.tail[i].y){
+                    console.log('apple on the tail, apple on the tail, apple on the tail!!!');                  
+                    badApple = true;
+                }
+            }
+            if (!badApple) {
+                console.log('2 - apple check good');
+                key = "create";
+            }else{
+                console.log('999 - bad apple');
+               // key = "generatePosition";
+                newApple();
+                break;
+            }
+        case "create":
+            console.log('3 - creating apple');
+            ctx.fillStyle = 'green';
+            ctx.fillRect(apple.x, apple.y, 5, 5);
+    }
+}
+
+function newAppleChecker(){
+    for (let i = 0; i < snake.length; i++){
+        if (apple.x == snake.tail[i].x && apple.y == snake.tail[i].y){
+            console.log("wrong spot fool");
+            //apple.x;
+           // apple.y;
+        }
+    }
 }
 
 function outOfBounds(){
-    if (snake.headPosition.x >= 290 || snake.headPosition.x <= 5 || snake.headPosition.y >= 140 || snake.headPosition.y <= 5){
+    if (snake.headPosition.x >= 300 || snake.headPosition.x <= 0 || snake.headPosition.y >= 150 || snake.headPosition.y <= 0){
         direction = 'STOP';
         gameOver();
     }
 }
 
-function gotTheApple(){
-    if (snake.headPosition.x === apple.width && snake.headPosition.y ===apple.height){
+function ateTheApple(){
+    if (snake.headPosition.x === apple.x && snake.headPosition.y ===apple.y){
         grow();
         newApple();
         updateScore();
@@ -62,11 +101,12 @@ function collideWithTail() {
 }
 
 function updateScore() {
-
+//Todo
 }
 
 function gameOver(){
-    console.log("Game Over!!!!");
+    snake.tail.length = 1;
+    snake.length = 1;
     gameOverFlag = true;
     clearInterval(myTicker);  
     gameOverModal();
@@ -76,24 +116,8 @@ function gameOver(){
     context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-window.addEventListener("resize", () => {
-   // snakeAspectRatio = window.innerHeight / window.innerWidth;
-    // console.log(window.innerWidth);
-    // console.log(window.innerHeight/0.8);
+// window.addEventListener("resize", () => {
 
-    // if (window.innerWidth > (window.innerHeight * 0.8)){
-    //     console.log("wide body");
-    //     snake.dimensions.height = 5;
-    //     snake.dimensions.width = (window.innerWidth/window.innerHeight) * 5;
-    // }else{
-    //     console.log("tall boy");
-    //     snake.dimensions.height = (window.innerWidth/window.innerHeight) * 5;
-    //     snake.dimensions.width = 5;
-    // }
-
-    // canvas.style.width = canvas.width;
-    // canvas.style.height = canvas.height;
-
-});
+// });
 
 

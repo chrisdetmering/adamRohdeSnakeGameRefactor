@@ -8,19 +8,16 @@ let snaky = function () {
         dimensions: { width: 5, height: 5 },
         headPosition: { x: 10, y: 10 },
         tail: [],
-
+        
         grow: function () {
-            console.log("We growing now");
             this.length += 1;
         },
 
         move: function () {
             if (snake.length > 0){
                 switch (direction) {
+
                     case "STOP":
-                        // ctx.fillRect(snake.headPosition.x, snake.headPosition.y,
-                        //     snake.dimensions.width, snake.dimensions.height);
-                        console.log('stop');
                         break;
     
                     case "UP":
@@ -28,6 +25,7 @@ let snaky = function () {
                             snake.dimensions.width + 0.1, snake.dimensions.height + 0.1);
                         //--------------
                         snake.headPosition.y -= snake.dimensions.height + snake.size;
+                        ctx.fillStyle = 'blue';
                         ctx.fillRect(snake.headPosition.x, snake.headPosition.y,
                             snake.dimensions.width, snake.dimensions.height);
                         //--------------
@@ -39,7 +37,7 @@ let snaky = function () {
                             snake.dimensions.width + 0.1, snake.dimensions.height + 0.1);
                         //--------------   
                         snake.headPosition.y += snake.dimensions.height + snake.size;
-                        //----------------
+                        ctx.fillStyle = 'blue';
                         ctx.fillRect(snake.headPosition.x, snake.headPosition.y,
                             snake.dimensions.width, snake.dimensions.height);
                         //----------------
@@ -51,7 +49,7 @@ let snaky = function () {
                             snake.dimensions.width + 0.1, snake.dimensions.height);
                         //--------------
                         snake.headPosition.x -= snake.dimensions.width + snake.size;
-                        //---------------
+                        ctx.fillStyle = 'blue';
                         ctx.fillRect(snake.headPosition.x, snake.headPosition.y,
                             snake.dimensions.width, snake.dimensions.height);
                         //----------------
@@ -63,29 +61,28 @@ let snaky = function () {
                             snake.dimensions.width + 0.1, snake.dimensions.height);
                         //----------------
                         snake.headPosition.x += snake.dimensions.width + snake.size;
-                        //----------------
+                        ctx.fillStyle = 'blue';
                         ctx.fillRect(snake.headPosition.x, snake.headPosition.y,
                             snake.dimensions.width, snake.dimensions.height);
+                        //----------------
                         snake.tail.push({ x: snake.headPosition.x, y: snake.headPosition.y });
                         break;
                 }
             } 
-
             //Tail Maintenance
             if (snake.tail.length > (snake.length + 1)){
                 snake.tail.splice(snake.tail.length - (snake.length + 1), 1);
             }
-
             outOfBounds();
             collideWithTail();
-            gotTheApple();
+            ateTheApple();
         }
     }
 }();
-function startGame(){
 
+function startGame(){
     myTicker = setInterval((direction) => { 
             snake.move(direction);
     }, 250);
-
 }
+
