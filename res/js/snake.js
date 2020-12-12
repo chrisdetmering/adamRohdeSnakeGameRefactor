@@ -8,11 +8,10 @@ let snaky = function () {
         dimensions: { width: 5, height: 5 },
         headPosition: { x: 10, y: 10 },
         tail: [],
-        
+
         grow: function () {
             this.length += 1;
         },
-
         move: function () {
             if (snake.length > 0){
                 switch (direction) {

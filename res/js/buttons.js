@@ -1,6 +1,8 @@
 let direction;
 let run;
 
+const scoreDisplay = document.getElementById("score");
+
 document.getElementById("game-container").addEventListener("click", () => {
     //direction = 'STOP';  
 });
@@ -21,11 +23,7 @@ document.getElementById("right-button").addEventListener("click", () => {
     run = 'running';
 
 });
-function update() {
-    document.getElementById("x-position").textContent = "X-Pos " + snake.headPosition.x;
-    document.getElementById("y-position").textContent = "Y-Pos " + snake.headPosition.y;
-}
-setInterval(update, 250);
+
 
 document.onkeydown = function (e){
     if (e.key ==  " "){

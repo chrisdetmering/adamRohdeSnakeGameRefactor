@@ -16,13 +16,15 @@ function initGame(){
     canvas.style.height = "100%";
     ctx.beginPath();
     
+    scoreDisplay.textContent = scoreFunction.theScore();
+
     snake.headPosition.x = 10;
     snake.headPosition.y = 10;
 
     ctx.fillStyle = 'blue';
     ctx.fillRect(snake.headPosition.xPosition, snake.headPosition.yPosition, snake.dimensions.width, snake.dimensions.height);
     snake.tail.push({ x: snake.dimensions.width, y: snake.dimensions.height });
-
+  
      newApple();
      startGame();
 }
@@ -38,10 +40,8 @@ function newApple(){
             apple = {
                 x : Math.floor(Math.floor(Math.random()*13) * 10 + 10), //Should be 300 small for testing..
                 y: Math.floor(Math.floor(Math.random()*14)*10 + 10)  //should be 150, small for testing
-            }; 
-            console.log('1 - generate apple');     
+            };    
             key = "check";
-
         case "check":
             let badApple = false;
             for (let i = 0; i < snake.length; i++){
@@ -51,16 +51,12 @@ function newApple(){
                 }
             }
             if (!badApple) {
-                console.log('2 - apple check good');
                 key = "create";
             }else{
-                console.log('999 - bad apple');
-               // key = "generatePosition";
                 newApple();
                 break;
             }
         case "create":
-            console.log('3 - creating apple');
             ctx.fillStyle = 'green';
             ctx.fillRect(apple.x, apple.y, 5, 5);
     }
@@ -70,8 +66,6 @@ function newAppleChecker(){
     for (let i = 0; i < snake.length; i++){
         if (apple.x == snake.tail[i].x && apple.y == snake.tail[i].y){
             console.log("wrong spot fool");
-            //apple.x;
-           // apple.y;
         }
     }
 }
@@ -83,11 +77,31 @@ function outOfBounds(){
     }
 }
 
+let scoreFunction = (function() {
+    let score = 0;
+    function add(){
+        score += 1;
+        console.log('the score is -  ' + score);
+        scoreDisplay.textContent = score;
+    }
+    return{
+        newPoint: function() {
+            add();
+        }, 
+        resetScore: function(){
+            score = 0;
+        },
+        theScore: function(){
+            return score;
+        }
+    };
+})();
+
 function ateTheApple(){
     if (snake.headPosition.x === apple.x && snake.headPosition.y ===apple.y){
         grow();
-        newApple();
-        updateScore();
+        newApple();   
+        scoreFunction.newPoint();
     }
 }
 
@@ -100,15 +114,12 @@ function collideWithTail() {
     }
 }
 
-function updateScore() {
-//Todo
-}
-
 function gameOver(){
     snake.tail.length = 1;
     snake.length = 1;
     gameOverFlag = true;
     clearInterval(myTicker);  
+    scoreFunction.resetScore();
     gameOverModal();
 
     //Clear All
@@ -119,5 +130,7 @@ function gameOver(){
 // window.addEventListener("resize", () => {
 
 // });
+
+
 
 

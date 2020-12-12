@@ -72,12 +72,12 @@ canvas {
 
 .show-status-row {
     display: inline-flex;
+    padding: 20px;
     justify-content: space-evenly;
 }
 
 .show-status-row p {
     display: flex;
-    /* margin: 0px 70px 0px 70px; */
 }
 
 .button-row-1 {
