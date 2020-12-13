@@ -46,7 +46,7 @@ body {
 }
 
 .main-container {
-    height: 99vh;
+    height: 95vh;
     left: 0;
     display: flex;
     flex-direction: column;
@@ -59,14 +59,13 @@ body {
 }
 
 canvas {
-    border: 2px solid #000000;
+    border: 1px solid #000000;
     width: 100%;
 }
 
 .button-container {
     display: grid;
-    grid-template-rows: 0.5fr 1fr 1fr 1fr;
-    background: red;
+    grid-template-rows: 0.2fr 1fr 1fr 1fr;
     flex-grow: 1;
 }
 
@@ -83,18 +82,20 @@ canvas {
 .button-row-1 {
     display: grid;
     grid-template-columns: 1fr;
-    border: 1px solid black;
+    margin-bottom: .2em;
+    /* border: 1px solid black; */
 }
 
 .button-row-2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 .button-row-3 {
     display: grid;
-    border: 1px solid black;
+    margin-top: .2em;
+    /* border: 1px solid black; */
 }
 
 .up-button {
@@ -109,6 +110,7 @@ canvas {
 
 .right-button {
     display: grid;
+    margin-left: .2em;
     place-items: center;
 }
 
@@ -132,24 +134,24 @@ canvas {
   }
   
   #box{
-    width: 500px;
+    width: 50vh;
     overflow: hidden;
-    background: pink;
-    box-shadow: 0 0 10px black;
+    background: lightgray;
+    box-shadow: 0 0 5px black;
     border-radius: 10px;
     position: absolute;
-    top: 50%;
+    top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 9999;
+    /* z-index: 9999; */
     padding: 10px;
     text-align: center;
     display: none;
   }
   
   #box span{
-    color: hotpink;
-    font-size: 40px;
+    color: lightgrey;
+    font-size: 4em;
     display: block;
     margin: 20px 0;
   }
@@ -160,7 +162,8 @@ canvas {
   
   .close{
     font-size: 18px;
-    color: white;
+    color: black;
+    border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
     background: rgb(111, 111, 223);

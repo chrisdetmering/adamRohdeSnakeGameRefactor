@@ -57,7 +57,6 @@ document.onkeydown = function (e){
 };
 
 var modal = null;
-
 document.getElementById("close-Modal").addEventListener("click", () => {
     hideModal();
     initGame();

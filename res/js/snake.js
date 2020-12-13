@@ -1,12 +1,19 @@
 let snake;
+let snakeWidth;
+let snakeHeight;
+
+snakeWidth = 1 * 5;
+snakeHeight = 5 * (window.innerWidth/window.innerHeight);
+
 
 let snaky = function () {
     snake = {
         size: 5,
         length: 1,
-        color: 'blue',
+        color: 'black',
+        //dimensions: { width: snakeWidth, height: snakeHeight },
         dimensions: { width: 5, height: 5 },
-        headPosition: { x: 10, y: 10 },
+        headPosition: { x: 50, y: 50 },
         tail: [],
 
         grow: function () {
@@ -24,7 +31,7 @@ let snaky = function () {
                             snake.dimensions.width + 0.1, snake.dimensions.height + 0.1);
                         //--------------
                         snake.headPosition.y -= snake.dimensions.height + snake.size;
-                        ctx.fillStyle = 'blue';
+                        ctx.fillStyle = this.color;
                         ctx.fillRect(snake.headPosition.x, snake.headPosition.y,
                             snake.dimensions.width, snake.dimensions.height);
                         //--------------
@@ -36,7 +43,7 @@ let snaky = function () {
                             snake.dimensions.width + 0.1, snake.dimensions.height + 0.1);
                         //--------------   
                         snake.headPosition.y += snake.dimensions.height + snake.size;
-                        ctx.fillStyle = 'blue';
+                        ctx.fillStyle = this.color;
                         ctx.fillRect(snake.headPosition.x, snake.headPosition.y,
                             snake.dimensions.width, snake.dimensions.height);
                         //----------------
@@ -48,7 +55,7 @@ let snaky = function () {
                             snake.dimensions.width + 0.1, snake.dimensions.height);
                         //--------------
                         snake.headPosition.x -= snake.dimensions.width + snake.size;
-                        ctx.fillStyle = 'blue';
+                        ctx.fillStyle = this.color;
                         ctx.fillRect(snake.headPosition.x, snake.headPosition.y,
                             snake.dimensions.width, snake.dimensions.height);
                         //----------------
@@ -60,7 +67,7 @@ let snaky = function () {
                             snake.dimensions.width + 0.1, snake.dimensions.height);
                         //----------------
                         snake.headPosition.x += snake.dimensions.width + snake.size;
-                        ctx.fillStyle = 'blue';
+                        ctx.fillStyle = this.color;
                         ctx.fillRect(snake.headPosition.x, snake.headPosition.y,
                             snake.dimensions.width, snake.dimensions.height);
                         //----------------
@@ -84,4 +91,20 @@ function startGame(){
             snake.move(direction);
     }, 200);
 }
+
+window.addEventListener("resize", () => {
+
+    window.width
+    console.log(window.innerWidth);
+    console.log(window.innerHeight);
+    
+    console.log(window.innerWidth/window.innerHeight);
+    
+    snakeWidth = 1 * 5;
+
+    snakeHeight = 1 * (window.innerWidth/window.innerHeight);
+
+});
+
+
 

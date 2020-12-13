@@ -1,5 +1,4 @@
 let apple;
-let heightRatio = 1;
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 let gameOverFlag;
@@ -16,17 +15,16 @@ function initGame(){
     canvas.style.height = "100%";
     ctx.beginPath();
     
-    scoreDisplay.textContent = scoreFunction.theScore();
-
-    snake.headPosition.x = 10;
-    snake.headPosition.y = 10;
-
-    ctx.fillStyle = 'blue';
+    
+    snake.headPosition.x = 50;
+    snake.headPosition.y = 50;
     ctx.fillRect(snake.headPosition.xPosition, snake.headPosition.yPosition, snake.dimensions.width, snake.dimensions.height);
     snake.tail.push({ x: snake.dimensions.width, y: snake.dimensions.height });
-  
-     newApple();
-     startGame();
+    
+    scoreDisplay.textContent = scoreFunction.theScore();
+
+    newApple();
+    startGame();
 }
 
 function grow() {
@@ -57,9 +55,11 @@ function newApple(){
                 break;
             }
         case "create":
-            ctx.fillStyle = 'green';
-            ctx.fillRect(apple.x, apple.y, 5, 5);
-    }
+            ctx.fillStyle = 'darkgrey';
+           // ctx.fillRect(apple.x, apple.y, 1 * 5, 5 * (window.innerWidth/window.innerHeight));
+           ctx.fillRect(apple.x, apple.y, 1 * 5, 5 * 1);
+        }
+
 }
 
 function newAppleChecker(){
@@ -98,7 +98,7 @@ let scoreFunction = (function() {
 })();
 
 function ateTheApple(){
-    if (snake.headPosition.x === apple.x && snake.headPosition.y ===apple.y){
+    if (snake.headPosition.x === apple.x && snake.headPosition.y === apple.y){
         grow();
         newApple();   
         scoreFunction.newPoint();
@@ -121,15 +121,12 @@ function gameOver(){
     clearInterval(myTicker);  
     scoreFunction.resetScore();
     gameOverModal();
-
     //Clear All
     const context = canvas.getContext('2d');
     context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-// window.addEventListener("resize", () => {
 
-// });
 
 
 
