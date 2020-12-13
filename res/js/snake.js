@@ -28,7 +28,7 @@ let snaky = function () {
     
                     case "UP":
                         ctx.clearRect(snake.tail[snake.tail.length - snake.length].x, snake.tail[snake.tail.length - snake.length].y,
-                            snake.dimensions.width + 0.1, snake.dimensions.height + 0.1);
+                            snake.dimensions.width + 0.35, snake.dimensions.height + 0.35);
                         //--------------
                         snake.headPosition.y -= snake.dimensions.height + snake.size;
                         ctx.fillStyle = this.color;
@@ -40,7 +40,7 @@ let snaky = function () {
     
                     case "DOWN":
                         ctx.clearRect(snake.tail[snake.tail.length - snake.length].x, snake.tail[snake.tail.length - snake.length].y,
-                            snake.dimensions.width + 0.1, snake.dimensions.height + 0.1);
+                            snake.dimensions.width + 0.35, snake.dimensions.height + 0.35);
                         //--------------   
                         snake.headPosition.y += snake.dimensions.height + snake.size;
                         ctx.fillStyle = this.color;
@@ -52,7 +52,7 @@ let snaky = function () {
     
                     case "LEFT":
                         ctx.clearRect(snake.tail[snake.tail.length - snake.length].x, snake.tail[snake.tail.length - snake.length].y,
-                            snake.dimensions.width + 0.1, snake.dimensions.height);
+                            snake.dimensions.width + 0.35, snake.dimensions.height + 0.35);
                         //--------------
                         snake.headPosition.x -= snake.dimensions.width + snake.size;
                         ctx.fillStyle = this.color;
@@ -64,7 +64,7 @@ let snaky = function () {
                     
                     case "RIGHT":
                         ctx.clearRect(snake.tail[snake.tail.length - snake.length].x, snake.tail[snake.tail.length - snake.length].y,
-                            snake.dimensions.width + 0.1, snake.dimensions.height);
+                            snake.dimensions.width + 0.35, snake.dimensions.height + 0.35);
                         //----------------
                         snake.headPosition.x += snake.dimensions.width + snake.size;
                         ctx.fillStyle = this.color;
