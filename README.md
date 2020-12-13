@@ -3,5 +3,4 @@ Work in progress
 
 # snake-game
 
-
-https://adamrohde.github.io/snake/
+ - [Play the game here](https://adamrohde.github.io/snake/)
