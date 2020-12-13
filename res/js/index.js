@@ -15,7 +15,6 @@ function initGame(){
     canvas.style.height = "100%";
     ctx.beginPath();
     
-    
     snake.headPosition.x = 50;
     snake.headPosition.y = 50;
     ctx.fillRect(snake.headPosition.xPosition, snake.headPosition.yPosition, snake.dimensions.width, snake.dimensions.height);
