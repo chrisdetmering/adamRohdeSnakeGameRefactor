@@ -14,23 +14,29 @@
 
 <body>
 
-    <!-- <a class="btn" onclick="pop()">Show Box</a> -->
-    <div id="box">
+    <div id="game-over">
         <i class="fas fa-check-circle"></i>
         <h1>Game Over!</h1>
-        <a class="close" id="close-Modal">Click here to start new game!</a>
+        <a class="close" id="close-gameover-modal">Click here to start new game!</a>
     </div>
+
+    <div id="start-game">
+        <i class="fas fa-check-circle"></i>
+        <h1>Start Game</h1>
+        <a class="close" id="close-start-Modal">Press the an arrow key to start the game</a>
+    </div>
+
 
     <div class="main-container">
         <div class="game-container" id="game-container">
             <canvas id="canvas"></canvas>
         </div>
 
-        <!-- <div class="button-container">
+        <div class="button-container">
             <div class="show-status-row">
                 <div id="score">Score</div>
             </div>
-            <div class="button-row-1">
+            <!-- <div class="button-row-1">
                 <button class="up-button" id="up-button">▲</button>
             </div>
             <div class="button-row-2">
@@ -39,14 +45,13 @@
             </div>
             <div class="button-row-3">
                 <button class="down-button" id="down-button">▼</button>
-            </div>
-        </div> -->
+            </div> -->
+        </div>
 
     </div>
 
     <script type="text/javascript" src="./res/js/buttons.js"></script>
     <script type="text/javascript" src="./res/js/index.js"></script>
-    <!-- <script type="text/javascript" src="./res/js/theme.js"></script> -->
     <script type="text/javascript" src="./res/js/snake.js"></script>
 
 </body>

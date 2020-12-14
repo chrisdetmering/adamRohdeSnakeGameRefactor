@@ -22,6 +22,7 @@ function initGame(){
     
     scoreDisplay.textContent = scoreFunction.theScore();
 
+    showStartGameModal();
     newApple();
     startGame();
 }
@@ -119,8 +120,7 @@ function gameOver(){
     gameOverFlag = true;
     clearInterval(myTicker);  
     scoreFunction.resetScore();
-    gameOverModal();
-    //Clear All
+    showGameOverModal();
     const context = canvas.getContext('2d');
     context.clearRect(0, 0, canvas.width, canvas.height);
 }

@@ -133,7 +133,7 @@ canvas {
     cursor: pointer;
   }
   
-  #box{
+  #game-over{
     width: 30vh;
     overflow: hidden;
     background: lightgray;
@@ -149,16 +149,43 @@ canvas {
     display: none;
   }
   
-  #box span{
+  #game-over span{
     color: lightgrey;
     font-size: 2em;
     display: block;
     margin: 20px 0;
   }
   
-  #box h1{
+  #game-over h1{
     color: rgb(0, 0, 0)
   }
+
+  #start-game{
+    width: 30vh;
+    overflow: hidden;
+    background: lightgray;
+    box-shadow: 0 0 5px black;
+    border-radius: 10px;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    text-align: center;
+    display: none;
+  }
+  
+  #start-game span{
+    color: lightgrey;
+    font-size: 2em;
+    display: block;
+    margin: 20px 0;
+  }
+  
+  #start-game h1{
+    color: rgb(0, 0, 0)
+  }
+
   
   .close{
     font-size: 1em;
