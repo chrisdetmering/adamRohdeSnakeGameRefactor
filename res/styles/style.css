@@ -72,6 +72,7 @@ canvas {
 .show-status-row {
     display: inline-flex;
     padding: 20px;
+    grid-template-columns: 1fr 1fr;
     justify-content: space-evenly;
 }
 
@@ -160,7 +161,7 @@ canvas {
     color: rgb(0, 0, 0)
   }
 
-  #start-game{
+  /* #start-game{
     width: 30vh;
     overflow: hidden;
     background: lightgray;
@@ -184,7 +185,7 @@ canvas {
   
   #start-game h1{
     color: rgb(0, 0, 0)
-  }
+  } */
 
   
   .close{

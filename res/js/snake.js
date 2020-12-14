@@ -94,15 +94,15 @@ function startGame(){
 
 window.addEventListener("resize", () => {
 
-    window.width
-    console.log(window.innerWidth);
-    console.log(window.innerHeight);
+    // window.width
+    // console.log(window.innerWidth);
+    // console.log(window.innerHeight);
     
-    console.log(window.innerWidth/window.innerHeight);
+    // console.log(window.innerWidth/window.innerHeight);
     
-    snakeWidth = 1 * 5;
+    // snakeWidth = 1 * 5;
 
-    snakeHeight = 1 * (window.innerWidth/window.innerHeight);
+    // snakeHeight = 1 * (window.innerWidth/window.innerHeight);
 
 });
 

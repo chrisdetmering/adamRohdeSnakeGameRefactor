@@ -4,25 +4,22 @@ const ctx = canvas.getContext("2d");
 let gameOverFlag;
 
 window.onload = () => {
-   
     initGame();
-   
 };
 
 function initGame(){
+
+    checkHighScore();
+
     gameOverFlag = false;
     canvas.style.width = "100%";
     canvas.style.height = "100%";
-    ctx.beginPath();
-    
+    ctx.beginPath();   
     snake.headPosition.x = 50;
     snake.headPosition.y = 50;
     ctx.fillRect(snake.headPosition.xPosition, snake.headPosition.yPosition, snake.dimensions.width, snake.dimensions.height);
     snake.tail.push({ x: snake.dimensions.width, y: snake.dimensions.height });
-    
-    scoreDisplay.textContent = scoreFunction.theScore();
-
-    showStartGameModal();
+    scoreDisplay.textContent = 'Click any arrow key to start game';
     newApple();
     startGame();
 }
@@ -48,26 +45,16 @@ function newApple(){
                     badApple = true;
                 }
             }
-            if (!badApple) {
+            if (!badApple) { 
                 key = "create";
             }else{
                 newApple();
                 break;
             }
         case "create":
-            ctx.fillStyle = 'darkgrey';
-           // ctx.fillRect(apple.x, apple.y, 1 * 5, 5 * (window.innerWidth/window.innerHeight));
+           ctx.fillStyle = 'darkgrey';
            ctx.fillRect(apple.x, apple.y, 1 * 5, 5 * 1);
         }
-
-}
-
-function newAppleChecker(){
-    for (let i = 0; i < snake.length; i++){
-        if (apple.x == snake.tail[i].x && apple.y == snake.tail[i].y){
-            console.log("wrong spot fool");
-        }
-    }
 }
 
 function outOfBounds(){
@@ -92,9 +79,10 @@ let scoreFunction = (function() {
             score = 0;
         },
         theScore: function(){
-            return score;
+           return score;
         }
-    };
+    }
+
 })();
 
 function ateTheApple(){
@@ -119,12 +107,38 @@ function gameOver(){
     snake.length = 1;
     gameOverFlag = true;
     clearInterval(myTicker);  
+    checkHighScore();
     scoreFunction.resetScore();
     showGameOverModal();
     const context = canvas.getContext('2d');
     context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
+
+function checkHighScore()  {
+ let  currentHigh = score.textContent;
+ let highScoreValue = JSON.parse(localStorage.getItem('high_score'));   
+
+    if (highScoreValue==null) {
+
+        localStorage.setItem('high_score', JSON.stringify(0)); 
+    
+    }else{
+
+       highScore.textContent = 'The current high score is: ' + highScoreValue;
+
+        if (parseInt(currentHigh) > parseInt(highScoreValue)){
+
+            console.log('new high');
+
+            localStorage.setItem('high_score', JSON.stringify(currentHigh)); 
+
+        }
+        
+
+    }
+
+}
 
 
 
