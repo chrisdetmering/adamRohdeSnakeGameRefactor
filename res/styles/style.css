@@ -15,36 +15,6 @@ body {
     background: var(--theme-color-back);
 } */
 
-.navbar {
-    background: var(--theme-color-nav);
-    height: auto;
-}
-
-.navbar .btn {
-    background: var(--theme-color-nav);
-}
-
-.navbar .burger {
-    width: 2em;
-    height: 0.2em;
-    background-color: var(--theme-color-burger);
-    margin: 0.25em 0;
-    border-radius: 0.2em;
-}
-
-.navbar div {
-    background-color: var(--theme-color-nav);
-    color: var(--theme-color-text);
-}
-
-.navbar input {
-    color: var(--theme-color-text);
-}
-
-.navbar label {
-    color: var(--theme-color-text);
-}
-
 .main-container {
     height: 95vh;
     left: 0;
@@ -79,47 +49,6 @@ canvas {
 .show-status-row p {
     display: flex;
 }
-
-.button-row-1 {
-    display: grid;
-    grid-template-columns: 1fr;
-    margin-bottom: .2em;
-    /* border: 1px solid black; */
-}
-
-.button-row-2 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    /* border: 1px solid black; */
-}
-
-.button-row-3 {
-    display: grid;
-    margin-top: .2em;
-    /* border: 1px solid black; */
-}
-
-.up-button {
-    display: grid;
-    place-items: center;
-}
-
-.left-button {
-    display: grid;
-    place-items: center;
-}
-
-.right-button {
-    display: grid;
-    margin-left: .2em;
-    place-items: center;
-}
-
-.down-button {
-    display: grid;
-    place-items: center;
-}
-
 
 /*Modal stuff */
 .btn{
@@ -161,33 +90,6 @@ canvas {
     color: rgb(0, 0, 0)
   }
 
-  /* #start-game{
-    width: 30vh;
-    overflow: hidden;
-    background: lightgray;
-    box-shadow: 0 0 5px black;
-    border-radius: 10px;
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 10px;
-    text-align: center;
-    display: none;
-  }
-  
-  #start-game span{
-    color: lightgrey;
-    font-size: 2em;
-    display: block;
-    margin: 20px 0;
-  }
-  
-  #start-game h1{
-    color: rgb(0, 0, 0)
-  } */
-
-  
   .close{
     font-size: 1em;
     color: black;

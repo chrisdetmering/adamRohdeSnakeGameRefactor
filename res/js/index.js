@@ -8,9 +8,7 @@ window.onload = () => {
 };
 
 function initGame(){
-
     checkHighScore();
-
     gameOverFlag = false;
     canvas.style.width = "100%";
     canvas.style.height = "100%";
@@ -103,11 +101,11 @@ function collideWithTail() {
 }
 
 function gameOver(){
+    checkHighScore();
     snake.tail.length = 1;
     snake.length = 1;
     gameOverFlag = true;
     clearInterval(myTicker);  
-    checkHighScore();
     scoreFunction.resetScore();
     showGameOverModal();
     const context = canvas.getContext('2d');
@@ -118,26 +116,15 @@ function gameOver(){
 function checkHighScore()  {
  let  currentHigh = score.textContent;
  let highScoreValue = JSON.parse(localStorage.getItem('high_score'));   
-
     if (highScoreValue==null) {
-
         localStorage.setItem('high_score', JSON.stringify(0)); 
-    
     }else{
-
        highScore.textContent = 'The current high score is: ' + highScoreValue;
-
         if (parseInt(currentHigh) > parseInt(highScoreValue)){
-
             console.log('new high');
-
             localStorage.setItem('high_score', JSON.stringify(currentHigh)); 
-
         }
-        
-
     }
-
 }
 
 

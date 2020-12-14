@@ -1,17 +1,10 @@
 let snake;
-let snakeWidth;
-let snakeHeight;
 
-snakeWidth = 1 * 5;
-snakeHeight = 5 * (window.innerWidth/window.innerHeight);
-
-
-let snaky = function () {
+(() => {
     snake = {
         size: 5,
         length: 1,
         color: 'black',
-        //dimensions: { width: snakeWidth, height: snakeHeight },
         dimensions: { width: 5, height: 5 },
         headPosition: { x: 50, y: 50 },
         tail: [],
@@ -84,27 +77,11 @@ let snaky = function () {
             ateTheApple();
         }
     }
-}();
+})();
 
 function startGame(){
     myTicker = setInterval((direction) => { 
             snake.move(direction);
     }, 200);
 }
-
-window.addEventListener("resize", () => {
-
-    // window.width
-    // console.log(window.innerWidth);
-    // console.log(window.innerHeight);
-    
-    // console.log(window.innerWidth/window.innerHeight);
-    
-    // snakeWidth = 1 * 5;
-
-    // snakeHeight = 1 * (window.innerWidth/window.innerHeight);
-
-});
-
-
 
