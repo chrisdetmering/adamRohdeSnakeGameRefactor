@@ -1,49 +1,47 @@
 let direction;
-let run;
+
 
 const scoreDisplay = document.getElementById("score");
 const highScore = document.getElementById("high-score");
 
 document.onkeydown = function (e){
+    e.preventDefault(); 
     if (e.key ==  " "){
         direction = 'STOP';
     }
 
     if (e.key == 'ArrowUp'){
-        run = 'running';
+
         direction = 'UP';
     }
     if (e.key == 'ArrowDown'){
-        run = 'running';
+
         direction = 'DOWN';
     }
 
     if (e.key == 'ArrowLeft'){
-        run = 'running';
+
         direction = 'LEFT';
     }
 
     if (e.key == 'ArrowRight'){
-        run = 'running';
+
         direction = 'RIGHT';
     }
-    if (gamOverModal == true) {
-        if (e.key == " ") {
-            hideGameOverModal();
-            initGame();
-        }
+    if (gamOverModal == true && e.key == " ") {
+        hideGameOverModal();
     }
 };
 
 let gamOverModal = null;
 document.getElementById("close-gameover-modal").addEventListener("click", () => {
     hideGameOverModal();
-    initGame();
 });
 
 function hideGameOverModal(){
     document.getElementById("game-over").style.display = "none";
     gamOverModal = null;
+    initGame();
 }
 
 function showGameOverModal() {
